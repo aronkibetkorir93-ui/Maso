@@ -3,60 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maso Secondary School Portal</title>
+    <title>Maso Secondary Portal</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <div id="auth-container" class="full-screen-center">
         <div class="auth-card">
-            <h1 class="text-center">Maso Portal</h1>
+            <h1>Maso Portal</h1>
             <div class="tabs">
                 <button id="tab-login" class="active" onclick="toggleAuth('login')">Login</button>
                 <button id="tab-signup" onclick="toggleAuth('signup')">Signup</button>
             </div>
-            <form id="auth-form" onsubmit="handleAuth(event)">
+            <form onsubmit="handleAuth(event)">
                 <div id="signup-fields" class="hidden">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" id="auth-name" placeholder="e.g. Aron Kibet">
-                    </div>
-                    <div class="form-group">
-                        <label>Role</label>
-                        <select id="auth-role">
-                            <option value="Student">Student</option>
-                            <option value="Teacher">Teacher</option>
-                            <option value="DOS">DOS</option>
-                            <option value="Admin">Admin</option>
-                        </select>
-                    </div>
+                    <input type="text" id="auth-name" placeholder="Full Name">
+                    <select id="auth-role">
+                        <option value="Student">Student</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="DOS">DOS</option>
+                        <option value="Admin">Admin</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="auth-email" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="auth-password" required minlength="6">
-                </div>
+                <input type="email" id="auth-email" placeholder="Email" required>
+                <input type="password" id="auth-password" placeholder="Password" required>
                 <div id="auth-error" class="error-text"></div>
-                <button type="submit" id="auth-btn" class="btn-primary w-100">Login to Portal</button>
+                <button type="submit" id="auth-btn" class="btn-primary">Login</button>
             </form>
         </div>
     </div>
 
     <div id="app-container" class="hidden layout">
         <aside class="sidebar">
-            <div class="brand"><h2>Maso Portal</h2></div>
+            <div class="brand"><h3>Maso Secondary</h3></div>
             <nav id="nav-menu"></nav>
-            <div class="sidebar-footer">
-                <p id="user-info" class="text-sm"></p>
-                <button onclick="logout()" class="btn-danger w-100">Logout</button>
-            </div>
+            <div class="footer"><p id="user-display"></p><button onclick="logout()">Logout</button></div>
         </aside>
-        <main class="main-content">
-            <header class="topbar"><h2 id="page-title">Dashboard</h2></header>
-            <div id="content-area" class="content-body"></div>
+        <main>
+            <header id="page-title">Dashboard</header>
+            <div id="content" class="content-body"></div>
         </main>
     </div>
     <script src="app.js"></script>

@@ -1,77 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Maso Secondary School Portal</title>
-  <link rel="stylesheet" href="style.css">
-
-  <!-- html2canvas -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maso Secondary School Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
+    <div id="auth-container" class="full-screen-center">
+        <div class="auth-card">
+            <h1 class="text-center">Maso Portal</h1>
+            <div class="tabs">
+                <button id="tab-login" class="active" onclick="toggleAuth('login')">Login</button>
+                <button id="tab-signup" onclick="toggleAuth('signup')">Signup</button>
+            </div>
+            <form id="auth-form" onsubmit="handleAuth(event)">
+                <div id="signup-fields" class="hidden">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="auth-name" placeholder="e.g. Aron Kibet">
+                    </div>
+                    <div class="form-group">
+                        <label>Role</label>
+                        <select id="auth-role">
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="DOS">DOS</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="auth-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-password" required minlength="6">
+                </div>
+                <div id="auth-error" class="error-text"></div>
+                <button type="submit" id="auth-btn" class="btn-primary w-100">Login to Portal</button>
+            </form>
+        </div>
+    </div>
 
-<div id="login" class="card">
-  <h2>Maso Secondary School</h2>
-  <input id="regno" placeholder="Reg No"><br>
-  <input id="password" type="password" placeholder="Password"><br>
-  <button onclick="login()">Login</button>
-</div>
-
-<div id="studentDash" class="hidden">
-
-  <div class="card">
-    <h2>Student Dashboard</h2>
-    <button onclick="loadResults()">View Results</button>
-    <button onclick="loadFees()">View Fees</button>
-    <button onclick="downloadImage()">Download Report</button>
-  </div>
-
-  <!-- REPORT CARD -->
-  <div id="reportCard">
-
-    <h2>MASO SECONDARY SCHOOL</h2>
-    <p id="studentInfo"></p>
-
-    <table id="resultsTable"></table>
-
-    <h3 id="gpaBox"></h3>
-
-    <div id="feesBox"></div>
-
-  </div>
-
-</div>
-
-<div id="adminDash" class="hidden">
-
-  <div class="card">
-    <h2>Admin Dashboard</h2>
-  </div>
-
-  <div class="card">
-    <h3>Register Student</h3>
-    <input id="newReg" placeholder="RegNo">
-    <input id="newName" placeholder="Name">
-    <input id="newPass" placeholder="Password">
-    <button onclick="registerStudent()">Register</button>
-  </div>
-
-  <div class="card">
-    <h3>Add Result</h3>
-    <input id="resReg" placeholder="RegNo">
-    <input id="resSub" placeholder="Subject">
-    <input id="resMarks" placeholder="Marks">
-    <button onclick="addResult()">Save</button>
-  </div>
-
-  <div class="card">
-    <h3>Add Fee Payment</h3>
-    <input id="feeReg" placeholder="RegNo">
-    <input id="feeAmount" placeholder="Amount">
-    <button onclick="addFee()">Save</button>
-  </div>
-
-</div>
-
-<script src="app.js"></script>
+    <div id="app-container" class="hidden layout">
+        <aside class="sidebar">
+            <div class="brand"><h2>Maso Portal</h2></div>
+            <nav id="nav-menu"></nav>
+            <div class="sidebar-footer">
+                <p id="user-info" class="text-sm"></p>
+                <button onclick="logout()" class="btn-danger w-100">Logout</button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="topbar"><h2 id="page-title">Dashboard</h2></header>
+            <div id="content-area" class="content-body"></div>
+        </main>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>

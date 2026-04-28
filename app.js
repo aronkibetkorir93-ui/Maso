@@ -57,6 +57,41 @@ async function handleAuth(e) {
                     }
                 }
             });
+            async function handleAuth(e) {
+    e.preventDefault();
+    alert("Button clicked! System is starting..."); // This tells us the button works
+
+    const email = document.getElementById('auth-email').value;
+    const password = document.getElementById('auth-password').value;
+    
+    try {
+        if (currentMode === 'signup') {
+            const name = document.getElementById('auth-name').value;
+            const role = document.getElementById('auth-role').value;
+            
+            alert("Attempting Signup for: " + name);
+
+            const { data, error } = await _supabase.auth.signUp({
+                email,
+                password,
+                options: { data: { name, role } }
+            });
+
+            if (error) throw error;
+            alert("Signup Success! Switch to login tab now.");
+        } else {
+            alert("Attempting Login...");
+            const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+            alert("Login Success! Loading Dashboard...");
+            loadApp(data.user);
+        }
+    } catch (err) {
+        alert("CRITICAL ERROR: " + err.message);
+        console.error(err);
+    }
+            }
+            
 
             if (error) throw error;
             

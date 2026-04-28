@@ -3,47 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maso Secondary Portal</title>
+    <title>Maso Secondary School Portal</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
+
     <div id="auth-container" class="full-screen-center">
         <div class="auth-card">
-            <h1>Maso Portal</h1>
-            <div class="tabs">
-                <button id="tab-login" class="active" onclick="toggleAuth('login')">Login</button>
-                <button id="tab-signup" onclick="toggleAuth('signup')">Signup</button>
+            <div class="auth-header">
+                <h1>Maso Portal</h1>
+                <p>School Management System</p>
             </div>
-            <form onsubmit="handleAuth(event)">
+            
+            <div class="tabs">
+                <button type="button" id="tab-login" class="active" onclick="toggleAuth('login')">Login</button>
+                <button type="button" id="tab-signup" onclick="toggleAuth('signup')">Signup</button>
+            </div>
+
+            <form id="auth-form" onsubmit="handleAuth(event)">
                 <div id="signup-fields" class="hidden">
-                    <input type="text" id="auth-name" placeholder="Full Name">
-                    <select id="auth-role">
-                        <option value="Student">Student</option>
-                        <option value="Teacher">Teacher</option>
-                        <option value="DOS">DOS</option>
-                        <option value="Admin">Admin</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="auth-name">Full Name</label>
+                        <input type="text" id="auth-name" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="auth-role">System Role</label>
+                        <select id="auth-role">
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="DOS">DOS</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
                 </div>
-                <input type="email" id="auth-email" placeholder="Email" required>
-                <input type="password" id="auth-password" placeholder="Password" required>
-                <div id="auth-error" class="error-text"></div>
-                <button type="submit" id="auth-btn" class="btn-primary">Login</button>
+
+                <div class="form-group">
+                    <label for="auth-email">Email Address</label>
+                    <input type="email" id="auth-email" placeholder="name@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="auth-password">Password</label>
+                    <input type="password" id="auth-password" placeholder="••••••••" required minlength="6">
+                </div>
+
+                <div id="auth-error" class="error-box"></div>
+
+                <button type="submit" id="auth-btn" class="btn-primary">Login to Portal</button>
             </form>
+            
+            <div class="auth-footer">
+                <p>© 2026 Maso Secondary School</p>
+            </div>
         </div>
     </div>
 
-    <div id="app-container" class="hidden layout">
+    <div id="app-container" class="hidden app-layout">
         <aside class="sidebar">
-            <div class="brand"><h3>Maso Secondary</h3></div>
-            <nav id="nav-menu"></nav>
-            <div class="footer"><p id="user-display"></p><button onclick="logout()">Logout</button></div>
+            <div class="sidebar-header">
+                <div class="logo-circle">M</div>
+                <h2>Maso Secondary</h2>
+            </div>
+            
+            <nav id="nav-menu" class="nav-list">
+                </nav>
+
+            <div class="sidebar-user">
+                <div class="user-meta">
+                    <span id="user-display-name">User Name</span>
+                    <small id="user-display-role">Role</small>
+                </div>
+                <button onclick="logout()" class="btn-logout">Sign Out</button>
+            </div>
         </aside>
-        <main>
-            <header id="page-title">Dashboard</header>
-            <div id="content" class="content-body"></div>
+
+        <main class="main-body">
+            <header class="top-nav">
+                <h2 id="page-title">Dashboard</h2>
+                <div class="date-display">April 2026</div>
+            </header>
+            
+            <section id="content-viewport" class="content-padding">
+                </section>
         </main>
     </div>
+
     <script src="app.js"></script>
 </body>
 </html>

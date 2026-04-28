@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Maso Secondary School Portal</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<div id="login" class="card">
+  <h2>Maso Secondary School</h2>
+  <input id="regno" placeholder="Reg No"><br>
+  <input id="password" type="password" placeholder="Password"><br>
+  <button onclick="login()">Login</button>
+</div>
+
+<div id="studentDash" class="hidden">
+
+  <div class="card">
+    <h2>Student Dashboard</h2>
+    <button onclick="loadResults()">View Results</button>
+    <button onclick="loadFees()">View Fees</button>
+    <button onclick="downloadImage()">Download Report</button>
+  </div>
+
+  <!-- REPORT CARD -->
+  <div id="reportCard">
+
+    <h2>MASO SECONDARY SCHOOL</h2>
+    <p id="studentInfo"></p>
+
+    <table id="resultsTable"></table>
+
+    <h3 id="gpaBox"></h3>
+
+    <div id="feesBox"></div>
+
+  </div>
+
+</div>
+
+<div id="adminDash" class="hidden">
+
+  <div class="card">
+    <h2>Admin Dashboard</h2>
+  </div>
+
+  <div class="card">
+    <h3>Register Student</h3>
+    <input id="newReg" placeholder="RegNo">
+    <input id="newName" placeholder="Name">
+    <input id="newPass" placeholder="Password">
+    <button onclick="registerStudent()">Register</button>
+  </div>
+
+  <div class="card">
+    <h3>Add Result</h3>
+    <input id="resReg" placeholder="RegNo">
+    <input id="resSub" placeholder="Subject">
+    <input id="resMarks" placeholder="Marks">
+    <button onclick="addResult()">Save</button>
+  </div>
+
+  <div class="card">
+    <h3>Add Fee Payment</h3>
+    <input id="feeReg" placeholder="RegNo">
+    <input id="feeAmount" placeholder="Amount">
+    <button onclick="addFee()">Save</button>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

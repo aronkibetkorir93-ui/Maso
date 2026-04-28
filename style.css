@@ -1,0 +1,54 @@
+body {
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+}
+
+input, button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  background: #22c55e;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+/* REPORT CARD STYLE */
+#reportCard {
+  background: white;
+  color: black;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+#reportCard h2 {
+  color: black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 8px;
+}
